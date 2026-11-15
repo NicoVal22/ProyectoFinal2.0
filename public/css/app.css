@@ -1,0 +1,266 @@
+/*
+ * Adiciones de JEWA sobre styles.css (que es idéntico a design/styles.css y no se edita).
+ * Se carga DESPUÉS de styles.css. Aquí van: menú plegable en tablet/teléfono,
+ * controles táctiles, estados de cita que faltaban y componentes nuevos.
+ */
+
+/* ───── Accesibilidad ───── */
+.skip-link { position: absolute; z-index: 10; top: -100px; left: 0.75rem; padding: 0.6rem 0.9rem; color: #fff; background: var(--accent-dark); border-radius: 0 0 4px 4px; font-size: 0.8rem; }
+.skip-link:focus { top: 0; }
+a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible { outline: 2px solid #8fb3c9; outline-offset: 2px; }
+.sidebar a:focus-visible, .sidebar button:focus-visible { outline-color: #fff; }
+
+/* ───── Evita desbordes horizontales ───── */
+.main-area { min-width: 0; }
+img, svg, video { max-width: 100%; }
+.dashboard, .panel, .data-form, .data-list-panel { min-width: 0; }
+
+/* Los enlaces con aspecto de botón no se subrayan */
+a.button { display: inline-block; text-decoration: none; }
+
+/* ───── Barra lateral: bloque de usuario ───── */
+.sidebar-user { display: flex; flex-direction: column; margin: 1.25rem 0 0 0.9rem; color: #fff; font-size: 0.78rem; }
+.sidebar-user span { color: var(--sidebar-muted); font-size: 0.68rem; }
+.sidebar-logout { margin: 0.6rem 0 0 0.9rem; padding: 0.5rem 0; color: var(--sidebar-muted); background: transparent; border: 0; font-size: 0.78rem; text-decoration: underline; cursor: pointer; }
+.sidebar-logout:hover { color: #fff; }
+.sidebar-footer .nav-link { margin-bottom: 0.25rem; }
+/* Nombre de clínica largo: letra menor, logo arriba y salto de línea sin desbordar la barra */
+.brand-largo { align-items: flex-start; font-size: 1.05rem; line-height: 1.2; }
+.brand-largo .brand-mark { flex: 0 0 30px; margin-top: 0.05rem; }
+.brand-largo > span:last-child { min-width: 0; overflow-wrap: anywhere; }
+.sidebar-backdrop { position: fixed; z-index: 2; inset: 0; background: rgba(20, 38, 52, 0.55); }
+
+/* ───── Estados de cita que faltaban (misma paleta que los avatares de mascotas) ───── */
+.status-done { color: #47796c; background: #d7eee6; }
+.status-cancelled { color: #a86049; background: #f8ded5; }
+.status-noshow { color: #a27035; background: #f5e9c9; }
+
+/* ───── Tablas: contenedor con desplazamiento propio ───── */
+.table-scroll { max-width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.data-table { width: 100%; border-collapse: collapse; font-size: 0.78rem; }
+.data-table th { padding: 0.7rem 0.8rem; color: var(--muted); border-bottom: 1px solid var(--line); font-size: 0.66rem; letter-spacing: 0.06em; text-align: left; text-transform: uppercase; white-space: nowrap; }
+.data-table td { padding: 0.8rem; border-bottom: 1px solid var(--line); vertical-align: middle; }
+.data-table tr:last-child td { border-bottom: 0; }
+
+/* ───── Mensajes ───── */
+.alert { margin: 0 0 1.2rem; padding: 0.85rem 1rem; border-left: 3px solid var(--accent); background: #edf3f6; color: #3a4f5e; font-size: 0.8rem; }
+.alert-error { border-left-color: #a86049; background: #f8ded5; color: #6e3a2a; }
+.alert-ok { border-left-color: #47796c; background: #d7eee6; color: #2c5248; }
+.field-error { display: block; margin-top: 0.3rem; color: #a05035; font-size: 0.68rem; font-weight: 400; }
+
+/* ───── Ajustes: pestañas, formularios, filtros y paginación ───── */
+.tabs { display: flex; flex-wrap: wrap; gap: 0.25rem; margin: -1rem 0 1.6rem; border-bottom: 1px solid var(--line); }
+.tab { display: inline-flex; align-items: center; min-height: 44px; padding: 0.5rem 1rem; color: var(--muted); border-bottom: 2px solid transparent; font-size: 0.82rem; text-decoration: none; }
+.tab:hover { color: var(--ink); }
+.tab.is-active { color: var(--accent-dark); border-bottom-color: var(--accent-dark); font-weight: 700; }
+.stack { display: flex; flex-direction: column; gap: 1.5rem; min-width: 0; }
+.data-form.stack-item, .stack > .data-form { width: 100%; }
+.check-row { display: flex !important; align-items: center; gap: 0.6rem; margin: 0.4rem 0 1rem; color: var(--ink) !important; font-size: 0.78rem !important; font-weight: 400 !important; cursor: pointer; }
+.data-form .check-row input[type="checkbox"] { display: inline-block; flex: 0 0 auto; width: 1.2rem; height: 1.2rem; margin: 0; }
+.field-hint { display: block; margin-top: 0.3rem; color: var(--muted); font-size: 0.66rem; font-weight: 400; }
+.button-danger { background: #a86049; }
+.button-danger:hover, .button-danger:focus-visible { background: #8c4a36; }
+.button:disabled { opacity: 0.5; cursor: not-allowed; }
+.text-link-dark { color: var(--accent-dark); }
+a.record-confirm { display: inline-flex; align-items: center; text-decoration: none; }
+.filter-bar { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); align-items: end; gap: 0.2rem 1rem; margin-bottom: 1.5rem; }
+.filter-bar label { margin-bottom: 0.6rem; }
+.filter-actions { display: flex; align-items: center; gap: 1rem; margin-bottom: 0.6rem; }
+.nowrap { white-space: nowrap; }
+.pagination { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.75rem; margin-top: 1.2rem; color: var(--muted); font-size: 0.74rem; }
+.pagination-off { color: #a9b6bf; font-size: 0.78rem; }
+
+/* ───── Ajustes de la clínica: formulario ancho, columnas y horario ───── */
+.form-ancho { max-width: 820px; }
+.form-cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 0 1.2rem; }
+.form-seccion { margin: 1.6rem 0 1rem; padding-top: 1.2rem; border-top: 1px solid var(--line); }
+.horario { margin: 0 0 1.2rem; padding: 0; border: 0; }
+.horario legend { padding: 0; margin-bottom: 0.7rem; color: var(--muted); font-size: 0.68rem; font-weight: 700; }
+.horario-dia { display: grid; grid-template-columns: minmax(130px, 1.2fr) minmax(110px, 1fr) minmax(110px, 1fr); align-items: end; gap: 0.2rem 0.9rem; padding: 0.55rem 0; border-bottom: 1px solid var(--line); }
+.horario-dia .check-row { margin: 0 0 0.65rem; }
+.horario-dia .horario-hora { margin-bottom: 0.2rem; }
+.horario-error { grid-column: 1 / -1; margin: 0 0 0.4rem; }
+.horario .form-note { margin: 1rem 0 0; }
+.sin-precio { color: #a86049; font-weight: 700; }
+@media (max-width: 640px) {
+    .horario-dia { grid-template-columns: 1fr 1fr; }
+    .horario-dia .horario-nombre { grid-column: 1 / -1; margin-bottom: 0.2rem; }
+}
+
+/* ───── Inicio de sesión y páginas de error (sin barra lateral) ───── */
+.auth-page { display: grid; min-height: 100vh; place-content: center; gap: 1.5rem; padding: 1.5rem 1rem; }
+.auth-brand { display: flex; flex-direction: column; align-items: center; }
+.auth-brand .brand { color: var(--sidebar); }
+.auth-brand .brand-mark { color: #fff; background: var(--sidebar); }
+.auth-brand .workspace-label { margin: 0.6rem 0 0; color: var(--muted); }
+.auth-card { width: min(420px, 100%); }
+.auth-title { margin-bottom: 0.6rem; font-size: 1.6rem; }
+.auth-card .form-note { margin-top: 0; }
+.auth-card .button { width: 100%; }
+.center-page { max-width: 560px; margin: 10vh auto; padding: 0 1rem; }
+.center-card { text-align: center; }
+
+/* ───── Tablet y teléfono (≤ 900 px): menú plegable ───── */
+@media (max-width: 900px) {
+    .sidebar { display: flex; position: fixed; z-index: 4; top: 0; bottom: 0; left: 0; width: min(280px, 85vw); height: auto; overflow-y: auto; transform: translateX(-105%); visibility: hidden; transition: transform 200ms ease, visibility 0s linear 200ms; }
+    .sidebar.is-open { transform: none; visibility: visible; box-shadow: 0 0 40px rgba(10, 25, 38, 0.35); transition: transform 200ms ease; }
+    .main-area { width: 100%; margin-left: 0; }
+    .menu-toggle { display: inline-flex; align-items: center; min-height: 44px; padding: 0.45rem 0.9rem; color: var(--ink); background: transparent; border: 1px solid var(--line); border-radius: 3px; font-size: 0.8rem; cursor: pointer; }
+    .topbar { padding-right: 1.25rem; padding-left: 1.25rem; }
+    .dashboard { padding-right: 1.5rem; padding-left: 1.5rem; }
+    .site-footer { padding-right: 1.5rem; padding-left: 1.5rem; }
+}
+
+/* ───── Pantallas táctiles o estrechas: controles de al menos 44 px ───── */
+@media (pointer: coarse), (max-width: 900px) {
+    .nav-link { min-height: 44px; }
+    .button { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding-right: 1.3rem; padding-left: 1.3rem; }
+    .text-link, .panel-heading a { display: inline-flex; align-items: center; min-height: 44px; }
+    .quick-action { min-height: 44px; }
+    .record-confirm, .record-delete, .sidebar-logout { min-height: 44px; padding-right: 0.8rem; padding-left: 0.8rem; }
+    .notification-button { width: 44px; height: 44px; }
+    /* 16 px evita el zoom automático de iOS al enfocar un campo */
+    .data-form input, .data-form select, .data-form textarea { min-height: 44px; font-size: 1rem; }
+    .data-form input[type="checkbox"], .data-form input[type="radio"] { min-height: 0; width: 1.4rem; height: 1.4rem; }
+    .check-row { min-height: 44px; }
+}
+
+/* ───── Teléfono (≤ 640 px) ───── */
+@media (max-width: 640px) {
+    .dashboard { padding-top: 1.5rem; padding-right: 1rem; padding-left: 1rem; }
+    .topbar, .site-footer { padding-right: 1rem; padding-left: 1rem; }
+    .home-menu-grid { grid-template-columns: 1fr 1fr; }
+    .table-scroll { margin-right: -0.25rem; margin-left: -0.25rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .sidebar, .sidebar.is-open { transition: none; }
+    html { scroll-behavior: auto; }
+}
+
+/* ───── Impresión: recetas, carnés y recibos ───── */
+@media print {
+    .sidebar, .sidebar-backdrop, .topbar, .site-footer, .skip-link, .no-print, .button { display: none !important; }
+    .main-area { width: 100%; margin: 0; }
+    body { background: #fff; }
+    .dashboard { max-width: none; padding: 0; }
+    .panel, .data-form, .data-list-panel { box-shadow: none; }
+}
+
+/* ───── Clientes y mascotas (ISS-06) ───── */
+.pet-photo { display: block; width: 160px; height: 160px; object-fit: cover; border: 1px solid var(--line); border-radius: 50%; }
+.pet-photo-vacia { display: grid; place-items: center; color: #a86049; background: #f8ded5; font-size: 3rem; font-weight: 700; }
+.ficha-foto { display: flex; flex-direction: column; align-items: flex-start; gap: 1.2rem; margin-bottom: 1.2rem; }
+.ficha-datos { display: grid; grid-template-columns: auto 1fr; gap: 0.35rem 0.9rem; min-width: 0; margin: 0; font-size: 0.78rem; }
+.ficha-datos dt { color: var(--muted); }
+.ficha-datos dd { margin: 0; overflow-wrap: anywhere; }
+.ficha-accesos { display: flex; flex-wrap: wrap; gap: 0.6rem; margin: 0; }
+.ficha-quitar { margin-top: 0.8rem; }
+.record-actions form { margin: 0; }
+
+/* ───── Citas y agenda (ISS-07) ───── */
+.cita { flex-wrap: wrap; }
+.cita-hora { display: flex; flex-direction: column; flex: 0 0 auto; min-width: 62px; }
+.cita-hora strong { font-size: 0.8rem; }
+.cita-hora span { color: var(--muted); font-size: 0.66rem; }
+.cita-acciones { display: flex; flex: 1 1 100%; flex-wrap: wrap; gap: 0.5rem; padding-top: 0.3rem; }
+.cita-acciones form { margin: 0; }
+.button-small { padding: 0.45rem 0.85rem; font-size: 0.72rem; }
+.agenda-nav { display: flex; flex-wrap: wrap; align-items: center; gap: 0.6rem; margin-bottom: 1.2rem; }
+.agenda-vistas { display: flex; gap: 0.3rem; margin-left: auto; }
+.agenda-dia h3 { margin: 0 0 0.6rem; font-size: 0.8rem; text-transform: capitalize; }
+.agenda-dia.es-hoy h3 { color: var(--accent-dark); }
+.agenda-fecha { margin: 0.8rem 0 0; color: var(--muted); font-size: 0.66rem; }
+.agenda-listas { margin-top: 1.5rem; }
+.avisos { margin: 0.4rem 0 0.6rem; padding-left: 1.1rem; }
+.semana { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 0.75rem; }
+.semana .agenda-dia { min-width: 0; padding: 0.7rem; border: 1px solid var(--line); border-radius: 4px; }
+.semana .agenda-dia.es-hoy { border-color: var(--accent); }
+.semana .record { padding: 0.5rem 0; }
+.semana .record-copy span { white-space: normal; }
+.semana .empty-state { padding: 0.5rem 0; font-size: 0.68rem; }
+@media (max-width: 1599px) {
+    .semana { grid-template-columns: 1fr; }
+}
+
+/* ───── Historial clínico (ISS-08) ───── */
+.form-ancho { max-width: 760px; }
+.data-form textarea { resize: vertical; font-family: inherit; line-height: 1.5; }
+.vitales { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 0 1rem; }
+.grafica { position: relative; height: 260px; }
+.ficha-consulta { margin-bottom: 1.2rem; }
+.texto-largo { white-space: pre-wrap; }
+.es-anulada { opacity: 0.8; }
+.consulta.es-anulada strong a { text-decoration: line-through; }
+
+/* ───── Adjuntos (ISS-09) ───── */
+.adjuntar { margin-top: 1.2rem; padding: 1rem 0 0; border-top: 1px solid var(--line); box-shadow: none; }
+
+/* ───── Hojas imprimibles: receta, carné, recibo (ISS-10) ───── */
+.hoja-page { background: var(--paper); }
+.hoja-barra { display: flex; align-items: center; justify-content: space-between; gap: 1rem; max-width: 820px; margin: 0 auto; padding: 1rem; }
+.hoja { max-width: 820px; margin: 0 auto 2rem; padding: 2rem; background: #fff; border: 1px solid var(--line); border-radius: 4px; }
+.hoja-cabecera { padding-bottom: 0.8rem; border-bottom: 2px solid var(--ink); text-align: center; }
+.hoja-cabecera h1 { margin: 0; font-size: 1.5rem; }
+.hoja-cabecera p { margin: 0.3rem 0 0; color: var(--muted); font-size: 0.78rem; }
+.hoja-titulo { margin: 1.2rem 0 0.8rem; font-size: 1.1rem; text-align: center; }
+.hoja-datos { display: grid; grid-template-columns: auto 1fr; gap: 0.3rem 1rem; margin: 0 0 1.2rem; font-size: 0.85rem; }
+.hoja-datos dt { color: var(--muted); }
+.hoja-datos dd { margin: 0; overflow-wrap: anywhere; }
+.hoja-tabla { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+.hoja-tabla th, .hoja-tabla td { padding: 0.55rem 0.5rem; border: 1px solid var(--line); text-align: left; vertical-align: top; }
+.hoja-tabla th { background: #f1f5f8; font-size: 0.72rem; text-transform: uppercase; }
+.hoja-nota { color: var(--muted); font-size: 0.78rem; }
+.hoja-firma { margin-top: 3.5rem; text-align: center; }
+.hoja-linea { width: 260px; max-width: 80%; margin: 0 auto 0.4rem; border-top: 1px solid var(--ink); }
+.vacuna-anular { display: flex; flex: 1 1 100%; flex-wrap: wrap; align-items: end; gap: 0.6rem; padding-top: 0.4rem; }
+.vacuna-anular label { flex: 1 1 220px; margin: 0; }
+.vacuna-anular input { display: block; width: 100%; margin-top: 0.35rem; padding: 0.7rem 0.75rem; color: var(--ink); background: #fbfdfe; border: 1px solid var(--line); border-radius: 3px; font-size: 0.76rem; }
+@media (pointer: coarse), (max-width: 900px) { .vacuna-anular input { min-height: 44px; font-size: 1rem; } }
+@media (max-width: 640px) { .hoja { padding: 1rem; } }
+@media print {
+    body.hoja-page { background: #fff; }
+    .hoja { max-width: none; margin: 0; padding: 0; border: 0; }
+}
+
+/* ───── Farmacia (ISS-11) ───── */
+.stock-grande { margin: 0 0 0.6rem; font-size: 1rem; }
+.stock-grande strong { font-size: 2.2rem; line-height: 1; }
+
+/* ───── Ventas y recibo (ISS-14) ───── */
+.totales { display: grid; grid-template-columns: 1fr auto; gap: 0.35rem 1rem; max-width: 360px; margin: 1rem 0 1.2rem auto; font-size: 0.85rem; }
+.totales dt { color: var(--muted); }
+.totales dd { margin: 0; text-align: right; }
+.totales .total-final { padding-top: 0.5rem; border-top: 1px solid var(--line); color: var(--ink); font-size: 1.05rem; font-weight: 700; }
+.venta-buscar { display: flex; flex-wrap: wrap; align-items: end; gap: 0.6rem; margin: 1rem 0; }
+.venta-buscar label { flex: 1 1 200px; margin: 0; }
+.acciones-cabecera { display: flex; flex-direction: column; align-items: flex-end; gap: 0.4rem; }
+.hoja-anulada { margin: 0.5rem 0; color: #a86049; font-size: 1.6rem; font-weight: 700; letter-spacing: 0.2em; text-align: center; }
+.hoja-totales { margin-top: 1rem; }
+.hoja-pie { margin-top: 2rem; text-align: center; }
+button[disabled] { opacity: 0.55; cursor: not-allowed; }
+
+/* ───── Recordatorios (ISS-15) ───── */
+.mensaje-previo { margin-top: 0.3rem; padding: 0.5rem 0.7rem; color: var(--ink) !important; background: #f1f5f8; border-left: 3px solid var(--accent); border-radius: 3px; font-size: 0.72rem !important; line-height: 1.5; white-space: normal !important; }
+.recordatorio { flex-wrap: wrap; }
+.recordatorio .record-copy strong { white-space: normal; }
+.recordatorio-nota { flex: 1 1 100%; margin: 0; }
+.es-enviado { opacity: 0.75; }
+
+/* ───── Reportes (ISS-16) ───── */
+.reportes-grid { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+.fila-total td { background: #f1f5f8; font-weight: 700; }
+.resumen-estados { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.2rem; }
+.resumen-estados .status { padding: 0.45rem 0.8rem; font-size: 0.72rem; }
+
+/* ───── Panel de inicio (ISS-17) ───── */
+.stats-grid { margin-top: 1.5rem; }
+.stats-grid:has(> :nth-child(4)) { grid-template-columns: repeat(4, 1fr); }
+.stats-grid:not(:has(> :nth-child(4))) { grid-template-columns: repeat(3, 1fr); }
+.inicio-paneles { margin-bottom: 2.3rem; align-items: start; }
+.alerta-lista { margin: 0; padding: 0; list-style: none; }
+.alerta-lista li { display: flex; flex-direction: column; gap: 0.1rem; padding: 0.7rem 0; border-bottom: 1px solid var(--line); font-size: 0.78rem; }
+.alerta-lista li:last-child { border-bottom: 0; }
+.alerta-lista span { color: var(--muted); font-size: 0.68rem; }
+.alerta-mas { color: var(--muted); font-size: 0.68rem !important; }
+@media (max-width: 900px) { .stats-grid:has(> :nth-child(4)), .stats-grid:not(:has(> :nth-child(4))) { grid-template-columns: repeat(2, 1fr); } }

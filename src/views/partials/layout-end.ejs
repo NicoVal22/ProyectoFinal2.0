@@ -1,0 +1,9 @@
+            </main>
+            <footer class="site-footer"><span><%= clinicName %></span><span><%= currentYear %></span></footer>
+        </div>
+    </div>
+    <script src="/js/app.js" defer></script>
+<% (locals.scripts || []).forEach(function (src) { %>    <script src="<%= src %>" defer></script>
+<% }) %>
+</body>
+</html>

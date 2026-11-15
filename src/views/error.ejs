@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title><%= title %> | <%= locals.clinicName || 'JEWA' %></title>
+    <link rel="icon" href="/img/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/app.css">
+</head>
+<body>
+    <main class="center-page">
+        <section class="panel center-card">
+            <p class="eyebrow">ERROR <%= status %></p>
+            <h1><%= title %></h1>
+            <p class="intro"><%= message %></p>
+            <p><a class="button" href="/">Volver al inicio</a></p>
+        </section>
+    </main>
+</body>
+</html>
